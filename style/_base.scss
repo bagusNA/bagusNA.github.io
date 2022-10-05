@@ -1,0 +1,31 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #E5DBD3;
+  --secondary: #292828;
+  --header-height: 80px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+body {
+  position: relative;
+  background-color: var(--secondary);
+  color: var(--primary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+}
