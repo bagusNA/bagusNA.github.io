@@ -72,14 +72,15 @@ aside {
 
 .header {
   position: fixed;
-  height: var(--header-height);
+  height: calc(var(--header-height) + 20px);
   width: 100%;
   padding: 0 2rem;
+  background-color: var(--secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--secondary);
   z-index: 20;
+  transition: 100ms;
 
   &__menus {
     display: none;
@@ -99,6 +100,10 @@ aside {
     @media (min-width: base.$breakpoint-md) {
       display: none;
     }
+  }
+
+  &.header--scrolled {
+    height: var(--header-height);
   }
 }
 
@@ -213,11 +218,15 @@ aside {
   }
 
   .arrow-down {
-    margin-top: 3vh;
-    margin-bottom: 3vh;
+    width: fit-content;
+    margin: 3vh auto;
     text-align: center;
     font-size: 2rem;
     animation: float 3s infinite;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
 }

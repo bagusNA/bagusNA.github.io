@@ -14,4 +14,27 @@ const loadProfileImage = () => {
     })
 }
 
+const headerOnScroll = () => {
+    const header = document.getElementById('header');
+
+    document.addEventListener('scroll', () => {
+        if (window.scrollY)
+            header.classList.add('header--scrolled');
+        else
+            header.classList.remove('header--scrolled');
+    });
+}
+
+const arrowScrollAction = () => {
+    const arrowEl = document.querySelector('.arrow-down');
+    const about = document.getElementById('about');
+
+    arrowEl.addEventListener('click', () => {
+        about.scrollIntoView();
+    })
+
+}
+
 loadProfileImage();
+headerOnScroll();
+arrowScrollAction();

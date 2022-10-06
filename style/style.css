@@ -161,14 +161,15 @@ aside .nav-bottom .theme-select .theme-list {
 
 .header {
   position: fixed;
-  height: var(--header-height);
+  height: calc(var(--header-height) + 20px);
   width: 100%;
   padding: 0 2rem;
+  background-color: var(--secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--secondary);
   z-index: 20;
+  transition: 100ms;
 }
 .header__menus {
   display: none;
@@ -187,6 +188,9 @@ aside .nav-bottom .theme-select .theme-list {
   .header__hamburger {
     display: none;
   }
+}
+.header.header--scrolled {
+  height: var(--header-height);
 }
 
 #about, #projects, #contact {
@@ -296,11 +300,14 @@ aside .nav-bottom .theme-select .theme-list {
   font-size: 0.9rem;
 }
 #home .arrow-down {
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  width: fit-content;
+  margin: 3vh auto;
   text-align: center;
   font-size: 2rem;
   animation: float 3s infinite;
+}
+#home .arrow-down:hover {
+  cursor: pointer;
 }
 
 #about {
