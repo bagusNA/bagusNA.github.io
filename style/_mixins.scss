@@ -8,3 +8,9 @@
   @include flex-center;
   flex-direction: column;
 }
+
+@mixin max-width($width) {
+  max-width: $width;
+  margin-left: auto;
+  margin-right: auto;
+}

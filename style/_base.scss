@@ -1,3 +1,8 @@
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
 * {
   padding: 0;
   margin: 0;
@@ -12,11 +17,17 @@
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration-color: transparent;
+  transition: 100ms;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration-color: inherit;
   }
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+  scroll-behavior: smooth;
 }
 
 body {
