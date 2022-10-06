@@ -95,7 +95,7 @@ p {
   }
 }
 aside {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
@@ -103,31 +103,32 @@ aside {
   inset: 0;
   background-color: var(--secondary);
   z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: 250ms;
 }
-aside .close {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  font-size: 1.5rem;
+aside.active {
+  opacity: 1;
+  visibility: visible;
 }
 aside nav {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 8rem;
+  margin-top: calc(var(--header-height) + 1rem);
 }
 aside nav > a {
   width: 100%;
   padding: 1.5rem 0;
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   transition: 100ms;
+  text-decoration: none;
 }
 aside nav > a:hover {
   background-color: var(--primary);
   color: var(--secondary);
-  text-decoration: none;
 }
 aside .nav-bottom {
   padding: 2rem 2rem;
@@ -137,7 +138,7 @@ aside .nav-bottom .links {
   justify-content: center;
   align-items: center;
   gap: 0 1.5rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 aside .nav-bottom .links > a {
@@ -184,10 +185,43 @@ aside .nav-bottom .theme-select .theme-list {
   display: flex;
   gap: 0 1.5rem;
 }
+.header__hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px 0;
+}
 @media (min-width: 768px) {
   .header__hamburger {
     display: none;
   }
+}
+.header__hamburger > * {
+  width: 24px;
+  height: 2px;
+  background-color: var(--primary);
+  transition: 200ms;
+}
+.header__hamburger > *:nth-child(2) {
+  position: absolute;
+}
+.header__hamburger.active > *:first-child {
+  transform: translateX(15px);
+  background-color: transparent;
+}
+.header__hamburger.active > *:nth-child(2) {
+  transform: rotate(45deg);
+}
+.header__hamburger.active > *:nth-child(3) {
+  transform: rotate(-45deg);
+}
+.header__hamburger.active > *:nth-child(4) {
+  transform: translateX(-15px);
+  background-color: transparent;
+}
+.header__hamburger:hover {
+  cursor: pointer;
 }
 .header.header--scrolled {
   height: var(--header-height);
@@ -445,6 +479,10 @@ footer {
 }
 .theme__secondary {
   background-color: var(--secondary);
+}
+
+.hide-overflow {
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=style.css.map */

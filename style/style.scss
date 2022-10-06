@@ -3,8 +3,7 @@
 @use 'animations';
 
 aside {
-  //display: flex;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
@@ -12,29 +11,30 @@ aside {
   inset: 0;
   background-color: var(--secondary);
   z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: 250ms;
 
-  .close {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 1.5rem;
+  &.active {
+    opacity: 1;
+    visibility: visible;
   }
 
   nav {
     @include mixins.flex-center-col;
-    margin-top: 8rem;
+    margin-top: calc(var(--header-height) + 1rem);
 
     & > a {
       width: 100%;
       padding: 1.5rem 0;
       text-align: center;
-      font-size: 1.75rem;
+      font-size: 1.25rem;
       transition: 100ms;
+      text-decoration: none;
 
       &:hover {
         background-color: var(--primary);
         color: var(--secondary);
-        text-decoration: none;
       }
     }
   }
@@ -45,7 +45,7 @@ aside {
     .links {
       @include mixins.flex-center;
       gap: 0 1.5rem;
-      font-size: 2.5rem;
+      font-size: 2rem;
       margin-bottom: .5rem;
 
       & > a {
@@ -97,8 +97,46 @@ aside {
   }
 
   &__hamburger {
+    @include mixins.flex-center-col;
+    gap: 5px 0;
+
     @media (min-width: base.$breakpoint-md) {
       display: none;
+    }
+
+    & > * {
+      width: 24px;
+      height: 2px;
+      background-color: var(--primary);
+      transition: 200ms;
+
+      &:nth-child(2) {
+        position: absolute;
+      }
+    }
+
+    &.active > * {
+      &:first-child {
+        transform: translateX(15px);
+        background-color: transparent;
+      }
+
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      &:nth-child(4) {
+        transform: translateX(-15px);
+        background-color: transparent;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
@@ -145,7 +183,6 @@ aside {
       text-align: end;
       animation: hero-heading-slide-mobile ease-in-out var(--hero-duration);
       z-index: 5;
-
 
       @media (min-width: base.$breakpoint-md) {
         font-size: 1.2rem;
@@ -371,16 +408,6 @@ footer {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-#home, #about, #projects, .header {
-  //display: none;
+.hide-overflow {
+  overflow: hidden;
 }

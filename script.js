@@ -11,7 +11,7 @@ const loadProfileImage = () => {
 
     window.addEventListener('load', () => {
         imageEl.classList.add('loaded');
-    })
+    });
 }
 
 const headerOnScroll = () => {
@@ -31,10 +31,39 @@ const arrowScrollAction = () => {
 
     arrowEl.addEventListener('click', () => {
         about.scrollIntoView();
-    })
+    });
+}
 
+const sidebarAction = () => {
+    const toggleEl = document.getElementById('toggle-sidebar');
+    const aside = document.querySelector('aside');
+    const navLinks = document.querySelectorAll('.aside__links');
+
+    const removeActive = () => {
+        toggleEl.classList.remove('active');
+        aside.classList.remove('active');
+        document.body.classList.remove('hide-overflow');
+    }
+
+    toggleEl.addEventListener('click', () => {
+        toggleEl.classList.toggle('active');
+        aside.classList.toggle('active');
+        document.body.classList.toggle('hide-overflow');
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            removeActive();
+        });
+    });
+
+    window.addEventListener('resize', () => {
+       if (window.innerWidth >= 768 && aside.classList.contains('active'))
+           removeActive();
+    });
 }
 
 loadProfileImage();
 headerOnScroll();
 arrowScrollAction();
+sidebarAction();
