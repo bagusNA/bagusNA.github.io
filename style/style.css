@@ -8,6 +8,7 @@
   --primary: #E5DBD3;
   --secondary: #292828;
   --header-height: 50px;
+  --hero-duration: 3000ms;
 }
 
 a {
@@ -41,6 +42,56 @@ p {
   }
   50% {
     transform: translateY(0.5rem);
+  }
+}
+@keyframes fade-overlay {
+  from, 75% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes hero-image-slide {
+  from, 50% {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes hero-heading-slide {
+  from, 50% {
+    transform: translateX(200px);
+    color: var(--secondary);
+  }
+  75% {
+    color: var(--secondary);
+  }
+  to {
+    transform: translateX(0);
+    color: var(--primary);
+  }
+}
+@keyframes hero-image-slide-mobile {
+  from, 50% {
+    transform: translateX(-25vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes hero-heading-slide-mobile {
+  from, 50% {
+    transform: translateX(25vw);
+    color: var(--secondary);
+  }
+  75% {
+    color: var(--secondary);
+  }
+  to {
+    transform: translateX(0);
+    color: var(--primary);
   }
 }
 aside {
@@ -117,7 +168,7 @@ aside .nav-bottom .theme-select .theme-list {
   justify-content: space-between;
   align-items: center;
   background-color: var(--secondary);
-  z-index: 5;
+  z-index: 20;
 }
 .header__menus {
   display: none;
@@ -174,10 +225,13 @@ aside .nav-bottom .theme-select .theme-list {
 }
 #home .hero__heading {
   text-align: end;
+  animation: hero-heading-slide-mobile ease-in-out var(--hero-duration);
+  z-index: 5;
 }
 @media (min-width: 768px) {
   #home .hero__heading {
     font-size: 1.2rem;
+    animation: hero-heading-slide ease-in-out var(--hero-duration);
   }
 }
 #home .hero__heading h1 {
@@ -199,16 +253,25 @@ aside .nav-bottom .theme-select .theme-list {
   aspect-ratio: 1;
   background-size: cover;
   background-position: center;
+  background-color: var(--primary);
+  animation: hero-image-slide-mobile ease-in-out var(--hero-duration);
+}
+@media (min-width: 768px) {
+  #home .hero__image {
+    animation: hero-image-slide ease-in-out var(--hero-duration);
+  }
 }
 #home .hero__image:after {
   content: "";
   position: absolute;
   inset: 0;
   background-color: var(--primary);
-  transition: 2500ms;
+  animation: fade-overlay var(--hero-duration);
+  animation-play-state: paused;
 }
 #home .hero__image.loaded:after {
   opacity: 0;
+  animation-play-state: running;
 }
 #home .tech-stacks {
   display: flex;

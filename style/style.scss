@@ -79,7 +79,7 @@ aside {
   justify-content: space-between;
   align-items: center;
   background-color: var(--secondary);
-  z-index: 5;
+  z-index: 20;
 
   &__menus {
     display: none;
@@ -138,9 +138,13 @@ aside {
 
     &__heading {
       text-align: end;
+      animation: hero-heading-slide-mobile ease-in-out var(--hero-duration);
+      z-index: 5;
+
 
       @media (min-width: base.$breakpoint-md) {
         font-size: 1.2rem;
+        animation: hero-heading-slide ease-in-out var(--hero-duration);
       }
 
       & h1 {
@@ -164,17 +168,25 @@ aside {
       aspect-ratio: 1;
       background-size: cover;
       background-position: center;
+      background-color: var(--primary);
+      animation: hero-image-slide-mobile ease-in-out var(--hero-duration);
+
+      @media (min-width: base.$breakpoint-md) {
+        animation: hero-image-slide ease-in-out var(--hero-duration);
+      }
 
       &:after {
         content: "";
         position: absolute;
         inset: 0;
         background-color: var(--primary);
-        transition: 2500ms;
+        animation: fade-overlay var(--hero-duration);
+        animation-play-state: paused;
       }
 
       &.loaded:after {
         opacity: 0;
+        animation-play-state: running;
       }
     }
   }

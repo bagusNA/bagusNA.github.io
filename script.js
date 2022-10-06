@@ -7,8 +7,11 @@ const loadProfileImage = () => {
     preloadImage.addEventListener('load', () => {
         imageEl.style.backgroundImage = `url("${url}")`;
         preloadImage = null;
-        imageEl.classList.add('loaded');
     });
+
+    window.addEventListener('load', () => {
+        imageEl.classList.add('loaded');
+    })
 }
 
 loadProfileImage();
