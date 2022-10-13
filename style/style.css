@@ -485,4 +485,8 @@ footer {
   overflow: hidden;
 }
 
+.animation-once {
+  animation-duration: 0ms !important;
+}
+
 /*# sourceMappingURL=style.css.map */

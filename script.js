@@ -12,6 +12,15 @@ const loadProfileImage = () => {
     window.addEventListener('load', () => {
         imageEl.classList.add('loaded');
     });
+
+    // Fix animation retriggered when resizing between breakpoints
+    const heroElements = Array.from(document.querySelector('.hero').children);
+
+    heroElements.forEach(el => {
+       el.addEventListener('animationend', () => {
+           el.classList.add('animation-once');
+       });
+    });
 }
 
 const headerOnScroll = () => {

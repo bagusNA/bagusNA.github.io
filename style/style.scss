@@ -411,3 +411,7 @@ footer {
 .hide-overflow {
   overflow: hidden;
 }
+
+.animation-once {
+  animation-duration: 0ms !important;
+}
